@@ -1,11 +1,510 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta name="description" content="Portofolio Ramdhan Saputra, Backend Developer dengan fokus pada Java, Spring Boot, Oracle Database, REST API, microservices, dan system integration.">
+  <meta name="theme-color" content="#f4f2ec">
+  <meta property="og:title" content="Ramdhan Saputra — Backend Developer">
+  <meta property="og:description" content="Backend developer yang membangun API, microservices, scheduler, dan integrasi sistem yang andal.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/85733403?v=4">
+  <meta property="og:type" content="website">
+  <title>Ramdhan Saputra — Backend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/script.js" defer></script>
 </head>
 <body>
-  <h1>Hello World</h1>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Kembali ke beranda"><span>R</span>Ramdhan.</a>
+    <nav aria-label="Navigasi utama">
+      <a href="#about">Tentang</a>
+      <a href="#stack">Teknologi</a>
+      <a href="#projects">Proyek</a>
+      <a href="#journey">Perjalanan</a>
+      <a href="#contact">Kontak</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" aria-label="Aktifkan mode gelap" title="Ganti tema">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+      </button>
+      <a class="header-cta" href="https://github.com/RamdhanRS" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <button class="menu-button" type="button" aria-label="Buka menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-shell" id="home">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span></span> Backend Developer · Indonesia</p>
+        <h1>Membangun sistem backend yang <em>andal</em> dan mudah dirawat.</h1>
+        <p class="hero-intro">
+          Saya <strong>Ramdhan Saputra</strong>. Fokus saya ada pada Java, Spring Boot,
+          Oracle Database, REST API, microservices, serta integrasi sistem dari proses
+          bisnis hingga deployment.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Lihat studi kasus <span>↘</span></a>
+          <a class="text-link" href="https://github.com/RamdhanRS" target="_blank" rel="noreferrer">GitHub saya <span>↗</span></a>
+        </div>
+      </div>
+
+      <div class="hero-console reveal" aria-label="Ilustrasi profil backend developer">
+        <div class="console-top"><i></i><i></i><i></i><span>ramdhan@backend:~</span></div>
+        <div class="console-body">
+          <p><b>$</b> whoami</p>
+          <p class="output">Ramdhan Saputra</p>
+          <p><b>$</b> cat focus.json</p>
+          <pre>{
+  <span>"role"</span>: "Backend Developer",
+  <span>"core"</span>: ["Java", "Spring Boot"],
+  <span>"database"</span>: "Oracle",
+  <span>"interest"</span>: ["Microservices", "AI/NLP"],
+  <span>"status"</span>: <i>"keep learning"</i>
+}</pre>
+          <p class="cursor-line"><b>$</b> <i class="cursor"></i></p>
+        </div>
+      </div>
+
+      <div class="hero-stats reveal">
+        <div class="stat-node"><span class="stat-dot"></span><small>01 / Build</small><strong>Java</strong><p>Core backend</p><i>Spring Boot</i></div>
+        <div class="stat-node"><span class="stat-dot"></span><small>02 / Connect</small><strong>REST</strong><p>API &amp; integration</p><i>Microservices</i></div>
+        <div class="stat-node"><span class="stat-dot"></span><small>03 / Process</small><strong>SQL</strong><p>Data &amp; performance</p><i>Oracle</i></div>
+        <div class="stat-node"><span class="stat-dot"></span><small>04 / Deliver</small><strong>CI/CD</strong><p>Delivery workflow</p><i>Docker · Linux</i></div>
+      </div>
+    </section>
+
+    <section class="about split-section section-shell" id="about">
+      <div class="section-number reveal">01 / Tentang saya</div>
+      <div>
+        <h2 class="section-title reveal">Saya menikmati bagian sistem yang bekerja <span>di balik layar.</span></h2>
+        <div class="about-bento">
+          <article class="about-story reveal">
+            <div class="about-card-label"><span>Profile</span><b>Backend-first mindset</b></div>
+            <p class="about-lead">Saya banyak bekerja dengan layanan backend berbasis <strong>Java dan Spring Boot</strong>—merancang endpoint, mengolah data, menghubungkan sistem, serta memastikan proses berjalan konsisten di berbagai environment.</p>
+            <p>Saya menyukai kode yang jelas, alur data yang dapat ditelusuri, dan layanan yang tetap tenang ketika kompleksitas mulai tumbuh.</p>
+            <div class="story-footer">
+              <span>Indonesia</span>
+              <span>Open to collaborate</span>
+            </div>
+          </article>
+
+          <article class="about-debug reveal">
+            <div class="about-card-label"><span>Daily practice</span><b>Observe → Trace → Solve</b></div>
+            <div class="debug-flow" aria-hidden="true">
+              <span><i>01</i>LOG</span><b></b><span><i>02</i>TRACE</span><b></b><span><i>03</i>FIX</span>
+            </div>
+            <p>Terbiasa membaca error log dan stack trace, menyusun query Oracle, menangani background job, serta menelusuri masalah sampai ke akar penyebab.</p>
+          </article>
+
+          <article class="about-deploy reveal">
+            <div class="about-card-label"><span>Delivery</span><b>Code to production</b></div>
+            <div class="deploy-visual" aria-hidden="true">
+              <span>&lt;/&gt;<small>CODE</small></span>
+              <i>→</i>
+              <span>⬡<small>DOCKER</small></span>
+              <i>→</i>
+              <span>◉<small>LINUX</small></span>
+            </div>
+            <p>Membawa aplikasi dari kode lokal menuju server menggunakan Docker dan pipeline CI/CD.</p>
+          </article>
+
+          <aside class="objective-card reveal">
+            <div class="objective-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+            <span>Career objective / Next chapter</span>
+            <h3>Tumbuh menjadi Backend Engineer dengan fondasi <em>system design</em> yang kuat.</h3>
+            <p>Memperdalam microservices, cloud, DevOps, dan data engineering sambil membangun proyek personal di area monitoring, automation, dan AI.</p>
+            <div class="objective-tags"><i>Cloud</i><i>Scale</i><i>Data</i><i>AI</i></div>
+          </aside>
+
+          <article class="about-explore reveal">
+            <div class="about-card-label"><span>Beyond backend</span><b>Explore &amp; learn</b></div>
+            <div>
+              <strong>AI</strong>
+              <span>+</span>
+              <strong>NLP</strong>
+              <span>+</span>
+              <strong>DATA</strong>
+            </div>
+            <p>Saya mengeksplorasi bagaimana data dan bahasa dapat diubah menjadi automation serta insight yang berguna.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="stack section-shell" id="stack">
+      <div class="section-heading reveal">
+        <div>
+          <div class="section-number">02 / Tech stack</div>
+          <h2 class="section-title">Perangkat yang saya gunakan untuk <span>menyelesaikan masalah.</span></h2>
+        </div>
+        <div class="stack-summary">
+          <span class="stack-pulse"></span>
+          <p>Toolkit yang terus berkembang mengikuti kebutuhan sistem, bukan sekadar mengikuti tren.</p>
+        </div>
+      </div>
+      <div class="stack-grid">
+        <article class="stack-card stack-backend reveal">
+          <div class="stack-card-top">
+            <span class="stack-index">01 / Core</span>
+            <span class="stack-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></svg></span>
+          </div>
+          <h3>Backend</h3>
+          <p>Layanan, business logic, dan integrasi yang menjadi inti aplikasi.</p>
+          <ul><li>Java</li><li>Spring Boot</li><li>REST API</li><li>Microservices</li><li>Quartz</li></ul>
+          <div class="stack-signal"><i></i><i></i><i></i><i></i><i></i></div>
+        </article>
+        <article class="stack-card stack-database reveal">
+          <div class="stack-card-top">
+            <span class="stack-index">02 / Data</span>
+            <span class="stack-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></span>
+          </div>
+          <h3>Database</h3>
+          <p>Data modeling dan query yang akurat, efisien, serta mudah ditelusuri.</p>
+          <ul><li>Oracle</li><li>Native SQL</li><li>Data Modeling</li><li>Optimization</li><li>MySQL</li></ul>
+          <div class="stack-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+        </article>
+        <article class="stack-card stack-devops reveal">
+          <div class="stack-card-top">
+            <span class="stack-index">03 / Delivery</span>
+            <span class="stack-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17h10a4 4 0 0 0 .5-8A6 6 0 0 0 6.1 7.5 4.8 4.8 0 0 0 7 17Z"/><path d="m9 13 3 3 3-3M12 9v7"/></svg></span>
+          </div>
+          <h3>DevOps</h3>
+          <p>Membawa aplikasi dari source code menuju environment yang siap digunakan.</p>
+          <ul><li>Docker</li><li>CI/CD</li><li>Linux</li><li>Deployment</li><li>Monitoring</li></ul>
+          <div class="pipeline" aria-hidden="true"><span>BUILD</span><b></b><span>SHIP</span><b></b><span>RUN</span></div>
+        </article>
+        <article class="stack-card stack-tools reveal">
+          <div class="stack-card-top">
+            <span class="stack-index">04 / Workflow</span>
+            <span class="stack-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><circle cx="6" cy="18" r="2"/><path d="M6 8v8M8 6h5a5 5 0 0 1 5 5v5"/></svg></span>
+          </div>
+          <h3>Tools</h3>
+          <p>Perangkat harian untuk kolaborasi, pengujian, build, dan troubleshooting.</p>
+          <ul><li>Git</li><li>GitHub / GitLab</li><li>Postman</li><li>Maven</li><li>Shell</li></ul>
+          <div class="command-line" aria-hidden="true"><b>$</b><span>git push origin main</span><i></i></div>
+        </article>
+        <article class="stack-card stack-ai reveal">
+          <div class="stack-card-top">
+            <span class="stack-index">05 / Exploration</span>
+            <span class="stack-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4a3 3 0 0 0-3 3v1a3 3 0 0 0-1 5.8V16a3 3 0 0 0 4.5 2.6A3 3 0 0 0 12 20V4a3 3 0 0 0-3 0ZM15 4a3 3 0 0 1 3 3v1a3 3 0 0 1 1 5.8V16a3 3 0 0 1-4.5 2.6A3 3 0 0 1 12 20V4a3 3 0 0 1 3 0Z"/><path d="M8 9h4M12 15h4"/></svg></span>
+          </div>
+          <h3>Data &amp; AI</h3>
+          <p>Eksperimen mengubah data dan teks menjadi klasifikasi serta insight.</p>
+          <ul><li>NLP</li><li>TF-IDF</li><li>Naïve Bayes</li><li>Sentiment</li><li>Processing</li></ul>
+          <div class="ai-nodes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </article>
+        <article class="stack-card stack-quality reveal">
+          <div class="stack-card-top">
+            <span class="stack-index">06 / Interface</span>
+            <span class="stack-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></span>
+          </div>
+          <h3>Frontend &amp; Quality</h3>
+          <p>Interface pendukung dan quality checks agar solusi nyaman digunakan.</p>
+          <ul><li>React</li><li>Tailwind</li><li>JavaScript</li><li>API Testing</li><li>Debugging</li></ul>
+          <div class="quality-score" aria-hidden="true"><strong>PASS</strong><span><i></i></span><small>API health check</small></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="projects section-shell" id="projects">
+      <div class="section-heading reveal">
+        <div>
+          <div class="section-number">03 / Featured work</div>
+          <h2 class="section-title">Studi kasus dari pekerjaan dan <span>eksperimen teknis.</span></h2>
+        </div>
+        <p class="section-note">Detail proyek profesional disajikan secara umum untuk menjaga kerahasiaan sistem dan data.</p>
+      </div>
+
+      <div class="case-grid">
+        <article class="case-card featured reveal">
+          <div class="case-top"><span class="case-kind">Professional case study</span><span class="private-label">Private</span></div>
+          <div class="case-number">01</div>
+          <h3>Subscription Management Backend</h3>
+          <p class="case-summary">Layanan backend untuk mengelola siklus subscription, customer, product, billing, dan status layanan secara konsisten.</p>
+          <div class="case-details">
+            <div><b>Problem</b><p>Proses lintas domain membutuhkan aturan bisnis dan alur data yang terjaga.</p></div>
+            <div><b>Peran &amp; highlight</b><p>Mengembangkan REST API, business logic, query database, validasi, dan integrasi antarlayanan.</p></div>
+            <div><b>Pembelajaran</b><p>Pemisahan domain, konsistensi transaksi, error handling, dan API maintainability.</p></div>
+          </div>
+          <div class="project-tags"><span>Java</span><span>Spring Boot</span><span>Oracle</span><span>REST API</span><span>Microservices</span></div>
+        </article>
+
+        <article class="case-card scheduler-card reveal">
+          <div class="case-top"><span class="case-kind">Backend automation</span><span class="private-label">Private</span></div>
+          <div class="case-visual scheduler-visual" aria-hidden="true">
+            <div class="visual-header"><span>JOB EXECUTION</span><b>LIVE</b></div>
+            <div class="scheduler-time"><strong>02:00</strong><span>DAILY TRIGGER</span></div>
+            <div class="scheduler-track"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="scheduler-status"><span><i></i>Queued</span><span><i></i>Running</span><span><i></i>Success</span></div>
+          </div>
+          <div class="case-content">
+            <div class="case-number">02 / Automation</div>
+            <h3>Job Scheduler Service</h3>
+            <p class="case-summary">Service untuk menjalankan proses terjadwal dan background job secara terkontrol menggunakan Quartz.</p>
+          </div>
+          <ul class="feature-list"><li>Konfigurasi jadwal dan trigger</li><li>Logging serta penanganan kegagalan</li><li>Proses batch yang dapat ditelusuri</li></ul>
+          <div class="project-tags"><span>Spring Boot</span><span>Quartz</span><span>Oracle</span></div>
+        </article>
+
+        <article class="case-card integration-card reveal">
+          <div class="case-top"><span class="case-kind">System integration</span><span class="private-label">Private</span></div>
+          <div class="case-visual api-visual" aria-hidden="true">
+            <div class="api-node"><small>CLIENT</small><b>APP</b></div>
+            <div class="api-route"><span>POST</span><i></i><code>/v1/sync</code><i></i><strong>200</strong></div>
+            <div class="api-node"><small>SERVICE</small><b>API</b></div>
+          </div>
+          <div class="case-content">
+            <div class="case-number">03 / Integration</div>
+            <h3>REST API Integration Service</h3>
+            <p class="case-summary">Lapisan integrasi untuk mempertukarkan data antar-aplikasi dengan kontrak API, validasi, dan respons error yang jelas.</p>
+          </div>
+          <ul class="feature-list"><li>Request/response mapping</li><li>Timeout dan error handling</li><li>Logging untuk troubleshooting</li></ul>
+          <div class="project-tags"><span>Java</span><span>REST</span><span>JSON</span><span>Integration</span></div>
+        </article>
+
+        <article class="case-card devops-card reveal">
+          <div class="case-top"><span class="case-kind">DevOps workflow</span><span class="private-label">Private</span></div>
+          <div class="case-visual deploy-pipeline" aria-hidden="true">
+            <div><i>01</i><span>COMMIT</span><b>✓</b></div>
+            <em></em>
+            <div><i>02</i><span>BUILD</span><b>✓</b></div>
+            <em></em>
+            <div><i>03</i><span>DEPLOY</span><b>●</b></div>
+          </div>
+          <div class="case-content">
+            <div class="case-number">04 / Delivery</div>
+            <h3>CI/CD Deployment Pipeline</h3>
+            <p class="case-summary">Alur build dan deployment aplikasi yang lebih konsisten dari repository menuju environment Linux.</p>
+          </div>
+          <ul class="feature-list"><li>Automated build &amp; packaging</li><li>Containerized deployment</li><li>Environment-aware configuration</li></ul>
+          <div class="project-tags"><span>Docker</span><span>CI/CD</span><span>Linux</span><span>GitLab</span></div>
+        </article>
+
+        <article class="case-card sentiment-card reveal">
+          <div class="case-top"><span class="case-kind">Data / NLP experiment</span><span class="status-label">Learning project</span></div>
+          <div class="case-visual sentiment-visual" aria-hidden="true">
+            <div class="sentiment-score"><strong>78%</strong><span>POSITIVE</span></div>
+            <div class="sentiment-bars"><i style="--value: 78%"></i><i style="--value: 16%"></i><i style="--value: 6%"></i></div>
+            <div class="sentiment-labels"><span>Positive</span><span>Neutral</span><span>Negative</span></div>
+          </div>
+          <div class="case-content">
+            <div class="case-number">05 / Experiment</div>
+            <h3>Astro App Sentiment Analysis</h3>
+            <p class="case-summary">Eksperimen klasifikasi sentimen ulasan aplikasi untuk melihat pola opini pengguna dalam bentuk dashboard.</p>
+          </div>
+          <ul class="feature-list"><li>Text preprocessing dan TF-IDF</li><li>Klasifikasi Naïve Bayes</li><li>Visualisasi hasil analisis</li></ul>
+          <div class="project-tags"><span>NLP</span><span>TF-IDF</span><span>Naïve Bayes</span><span>Dashboard</span></div>
+        </article>
+
+        <article class="case-card public-card reveal">
+          <div class="case-top"><span class="case-kind">Public repositories</span><span class="status-label">Open source</span></div>
+          <div class="case-visual repo-visual" aria-hidden="true">
+            <div class="repo-window">
+              <div><i></i><i></i><i></i><span>github.com/RamdhanRS</span></div>
+              <pre><b>public</b> class Learning {
+  String mindset = <i>"build & improve"</i>;
+  int progress = progress + 1;
+}</pre>
+            </div>
+          </div>
+          <div class="case-content">
+            <div class="case-number">06 / Foundation</div>
+            <h3>Early Learning Projects</h3>
+            <p class="case-summary">Jejak awal eksplorasi aplikasi desktop Java dan sistem informasi akademik berbasis PHP.</p>
+          </div>
+          <div class="repo-links">
+            <a href="https://github.com/RamdhanRS/playcodeAcademy" target="_blank" rel="noreferrer"><span>playcodeAcademy</span><small>Java · NetBeans</small><b>↗</b></a>
+            <a href="https://github.com/RamdhanRS/siaka" target="_blank" rel="noreferrer"><span>SIAKA</span><small>PHP · HTML · CSS</small><b>↗</b></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="working split-section section-shell" id="working-style">
+      <div class="section-number reveal">04 / Cara kerja</div>
+      <div>
+        <h2 class="section-title reveal">Tenang saat debugging, teliti saat <span>menyusun solusi.</span></h2>
+        <div class="workflow-board">
+          <article class="workflow-card evidence-card reveal">
+            <div class="workflow-top"><span>01 / Evidence</span><i>INPUT</i></div>
+            <div class="workflow-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4M8 9h6M8 12h4"/></svg>
+            </div>
+            <h3>Mulai dari bukti</h3>
+            <p>Membaca log, stack trace, payload, dan data aktual sebelum menyimpulkan sumber masalah.</p>
+            <div class="log-preview" aria-hidden="true">
+              <span><b>INFO</b> request received</span>
+              <span><b>WARN</b> response delayed</span>
+              <span><b>TRACE</b> root cause found</span>
+            </div>
+          </article>
+
+          <article class="workflow-card structure-card reveal">
+            <div class="workflow-top"><span>02 / Structure</span><i>DESIGN</i></div>
+            <div class="workflow-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="6" height="5" rx="1"/><rect x="15" y="4" width="6" height="5" rx="1"/><rect x="9" y="15" width="6" height="5" rx="1"/><path d="M6 9v3h12V9M12 12v3"/></svg>
+            </div>
+            <h3>Jaga struktur</h3>
+            <p>Memisahkan tanggung jawab kode agar perubahan lebih aman dan aplikasi mudah dirawat.</p>
+            <div class="layer-preview" aria-hidden="true"><span>Controller</span><i></i><span>Service</span><i></i><span>Repository</span></div>
+          </article>
+
+          <div class="workflow-core reveal" aria-hidden="true">
+            <div class="core-rings"><i></i><i></i><i></i></div>
+            <span>SOLVE</span>
+            <strong>WITH<br>CONTEXT</strong>
+            <small>observe · reason · improve</small>
+          </div>
+
+          <article class="workflow-card data-card reveal">
+            <div class="workflow-top"><span>03 / Data</span><i>PROCESS</i></div>
+            <div class="workflow-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg>
+            </div>
+            <h3>Pikirkan data</h3>
+            <p>Menulis query dengan mempertimbangkan ketepatan hasil, volume data, dan efisiensi eksekusi.</p>
+            <div class="query-preview" aria-hidden="true">
+              <code><b>SELECT</b> result</code>
+              <span><i style="--size: 62%"></i></span>
+              <small>optimized · 42ms</small>
+            </div>
+          </article>
+
+          <article class="workflow-card operations-card reveal">
+            <div class="workflow-top"><span>04 / Operations</span><i>OUTPUT</i></div>
+            <div class="workflow-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17h10a4 4 0 0 0 .5-8A6 6 0 0 0 6.1 7.5 4.8 4.8 0 0 0 7 17Z"/><path d="M9 13h6M12 10v6"/></svg>
+            </div>
+            <h3>Siap dioperasikan</h3>
+            <p>Memperhatikan konfigurasi, deployment, observability, dan perbedaan antar-environment.</p>
+            <div class="health-preview" aria-hidden="true">
+              <span><i></i>API</span><span><i></i>DB</span><span><i></i>JOB</span><strong>ALL SYSTEMS NORMAL</strong>
+            </div>
+          </article>
+        </div>
+        <div class="workflow-caption reveal"><span>Prinsip utama</span><p>Solusi yang baik tidak berhenti pada “berjalan”, tetapi juga dapat dipahami, diuji, dan dioperasikan.</p></div>
+      </div>
+    </section>
+
+    <section class="journey section-shell" id="journey">
+      <div class="section-heading reveal">
+        <div>
+          <div class="section-number">05 / Learning timeline</div>
+          <h2 class="section-title">Perjalanan belajar yang terus <span>bertambah.</span></h2>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-line" aria-hidden="true"><i></i></div>
+        <article class="timeline-item reveal">
+          <div class="timeline-marker"><span>01</span><i></i></div>
+          <div class="timeline-card">
+            <div class="timeline-meta"><span>Foundation</span><small>Start here</small></div>
+            <div class="timeline-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></svg></div>
+            <h3>Java &amp; aplikasi desktop</h3>
+            <p>Membangun fondasi pemrograman, OOP, dan alur aplikasi melalui Java dan NetBeans.</p>
+            <div class="timeline-skills"><span>Java</span><span>OOP</span><span>NetBeans</span></div>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-marker"><span>02</span><i></i></div>
+          <div class="timeline-card">
+            <div class="timeline-meta"><span>Web backend</span><small>Build services</small></div>
+            <div class="timeline-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/><circle cx="18" cy="16" r="3"/></svg></div>
+            <h3>Spring Boot &amp; REST API</h3>
+            <p>Beralih ke pengembangan service, business logic, kontrak API, dan integrasi sistem.</p>
+            <div class="timeline-skills"><span>Spring Boot</span><span>REST</span><span>Service</span></div>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-marker"><span>03</span><i></i></div>
+          <div class="timeline-card">
+            <div class="timeline-meta"><span>Data layer</span><small>Go deeper</small></div>
+            <div class="timeline-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></div>
+            <h3>Oracle &amp; native query</h3>
+            <p>Mendalami pengolahan data, relasi, query kompleks, debugging SQL, dan performa.</p>
+            <div class="timeline-skills"><span>Oracle</span><span>SQL</span><span>Optimization</span></div>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-marker"><span>04</span><i></i></div>
+          <div class="timeline-card">
+            <div class="timeline-meta"><span>Operations</span><small>Ship software</small></div>
+            <div class="timeline-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17h10a4 4 0 0 0 .5-8A6 6 0 0 0 6.1 7.5 4.8 4.8 0 0 0 7 17Z"/><path d="m9 13 3 3 3-3M12 9v7"/></svg></div>
+            <h3>Docker, Linux &amp; CI/CD</h3>
+            <p>Memahami perjalanan aplikasi dari source code, build, container, hingga server.</p>
+            <div class="timeline-skills"><span>Docker</span><span>Linux</span><span>Pipeline</span></div>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-marker"><span>05</span><i></i></div>
+          <div class="timeline-card">
+            <div class="timeline-meta"><span>Automation</span><small>Work smarter</small></div>
+            <div class="timeline-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2M18 4l2 2"/></svg></div>
+            <h3>Scheduler &amp; background job</h3>
+            <p>Mengelola proses berkala, trigger, logging, dan penanganan kegagalan job.</p>
+            <div class="timeline-skills"><span>Quartz</span><span>Batch</span><span>Logging</span></div>
+          </div>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-marker"><span>06</span><i></i></div>
+          <div class="timeline-card">
+            <div class="timeline-meta"><span>Exploration</span><small>Connect ideas</small></div>
+            <div class="timeline-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="m8 11 8-4M8 13l8 4"/></svg></div>
+            <h3>NLP &amp; dashboard</h3>
+            <p>Bereksperimen dengan TF-IDF, Naïve Bayes, React, dan visualisasi data.</p>
+            <div class="timeline-skills"><span>NLP</span><span>React</span><span>Data Viz</span></div>
+          </div>
+        </article>
+        <article class="timeline-item next reveal">
+          <div class="timeline-marker"><span>07</span><i></i></div>
+          <div class="timeline-card">
+            <div class="timeline-meta"><span>Next chapter</span><small>In progress</small></div>
+            <div class="timeline-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 15 10-10M7 5h8v8"/><path d="M5 19h14"/></svg></div>
+            <h3>System design, cloud &amp; data engineering</h3>
+            <p>Fokus berikutnya untuk membangun sistem yang semakin scalable dan observable.</p>
+            <div class="timeline-skills"><span>Cloud</span><span>Scale</span><span>Observability</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="platforms section-shell" aria-labelledby="platform-title">
+      <div class="section-number reveal">06 / Jejak kode</div>
+      <div class="platform-heading reveal">
+        <h2 class="section-title" id="platform-title">Temukan saya di <span>platform developer.</span></h2>
+        <p>Repositori publik berisi proyek pembelajaran. Sebagian besar studi kasus profesional berada di repository private.</p>
+      </div>
+      <div class="platform-grid">
+        <a class="platform-card reveal" href="https://github.com/RamdhanRS" target="_blank" rel="noreferrer"><span class="platform-mark">GH</span><span><b>GitHub</b><small>@RamdhanRS</small></span><strong>↗</strong></a>
+        <a class="platform-card reveal" href="https://gitlab.com/RamdhanRS" target="_blank" rel="noreferrer"><span class="platform-mark orange">GL</span><span><b>GitLab</b><small>Ramdhan Ridho Saputra</small></span><strong>↗</strong></a>
+        <div class="platform-card reveal"><span class="platform-mark green">GT</span><span><b>Gitea</b><small>Self-hosted workspace</small></span><strong class="private-dot" title="Private"></strong></div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-inner">
+        <p class="eyebrow reveal"><span></span> Terbuka untuk peluang dan kolaborasi</p>
+        <h2 class="reveal">Mari membangun sistem yang <em>bisa diandalkan.</em></h2>
+        <p class="reveal">Punya tantangan backend, integrasi, automation, atau ide produk? Saya senang bertukar pikiran dan mengeksplorasi solusi.</p>
+        <div class="contact-actions reveal">
+          <a class="button button-light" href="https://github.com/RamdhanRS" target="_blank" rel="noreferrer">Hubungi via GitHub <span>↗</span></a>
+          <a class="text-link light-link" href="https://gitlab.com/RamdhanRS" target="_blank" rel="noreferrer">Lihat GitLab <span>↗</span></a>
+        </div>
+      </div>
+      <div class="contact-code" aria-hidden="true">API<br>SQL<br>JAVA</div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="#home"><span>R</span>Ramdhan.</a>
+    <p>Backend engineering · automation · continuous learning</p>
+    <p>© <span id="year">2026</span> Ramdhan Saputra</p>
+  </footer>
 </body>
 </html>
