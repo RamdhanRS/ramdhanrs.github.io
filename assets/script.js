@@ -99,6 +99,7 @@ const translations = new Map([
   ["Punya tantangan backend, integrasi, automation, atau ide produk? Saya senang bertukar pikiran dan mengeksplorasi solusi.", "Have a backend, integration, automation challenge, or product idea? I’m happy to exchange ideas and explore solutions."],
   ["Hubungi via GitHub", "Contact via GitHub"],
   ["Lihat GitLab", "View GitLab"],
+  ["Total kunjungan", "Total visits"],
 ])
 
 const originalText = new WeakMap()
@@ -217,3 +218,28 @@ if ("IntersectionObserver" in window) {
 }
 
 document.getElementById("year").textContent = new Date().getFullYear()
+
+const visitorCount = document.getElementById("visitor-count")
+const counterBaseUrl = "https://api.counterapi.dev/v1/ramdhanrs-portfolio/pageviews"
+const isLocalPreview = ["", "localhost", "127.0.0.1"].includes(window.location.hostname)
+const hasCountedSession = sessionStorage.getItem("portfolio-visit-counted") === "true"
+
+async function loadVisitorCount() {
+  try {
+    const shouldIncrement = !isLocalPreview && !hasCountedSession
+    const response = await fetch(`${counterBaseUrl}${shouldIncrement ? "/up" : ""}`)
+    if (!response.ok) throw new Error("Visitor counter unavailable")
+
+    const data = await response.json()
+    visitorCount.textContent = new Intl.NumberFormat(root.lang === "en" ? "en-US" : "id-ID").format(data.count)
+
+    if (shouldIncrement) {
+      sessionStorage.setItem("portfolio-visit-counted", "true")
+    }
+  } catch {
+    visitorCount.textContent = "—"
+    visitorCount.closest(".visitor-counter")?.setAttribute("title", root.lang === "en" ? "Visitor count is temporarily unavailable" : "Jumlah kunjungan sementara tidak tersedia")
+  }
+}
+
+loadVisitorCount()

@@ -626,6 +626,15 @@ html[lang="id"] .contact h2 { max-width: 820px; font-size: clamp(50px, 5.8vw, 78
 .contact-orbits i:first-child { left: 15%; top: 20%; }.contact-orbits i:nth-child(2) { right: 4%; top: 52%; }.contact-orbits i:last-child { left: 35%; bottom: 3%; }
 .site-footer { min-height: 110px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 10px; }
 .site-footer p { margin: 0; }
+.visitor-counter { display: flex; align-items: center; gap: 10px; color: var(--muted); }
+.visitor-counter > span:last-child { display: grid; gap: 2px; }
+.visitor-counter small { font-size: 7px; font-weight: 600; letter-spacing: .11em; text-transform: uppercase; }
+.visitor-counter strong { color: var(--ink); font: 700 15px var(--font-display); letter-spacing: -.03em; }
+.visitor-signal { width: 30px; height: 30px; padding: 8px; display: flex; align-items: end; justify-content: center; gap: 2px; border: 1px solid var(--line); border-radius: 50%; }
+.visitor-signal i { width: 3px; border-radius: 2px; background: var(--purple); }
+.visitor-signal i:first-child { height: 30%; opacity: .45; }
+.visitor-signal i:nth-child(2) { height: 60%; opacity: .7; }
+.visitor-signal i:last-child { height: 100%; }
 
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -756,6 +765,7 @@ html[lang="id"] .contact h2 { max-width: 820px; font-size: clamp(50px, 5.8vw, 78
   html[lang="id"] .contact h2 { font-size: 43px; }
   .contact-code { display: none; }
   .site-footer { padding-block: 35px; align-items: flex-start; flex-direction: column; gap: 17px; }
+  .visitor-counter { order: 2; }
 }
 
 /* Small phones: 320px–420px */
