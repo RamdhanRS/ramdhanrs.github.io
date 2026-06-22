@@ -1,22 +1,27 @@
-const root = document.documentElement;
-const header = document.querySelector(".site-header");
-const menuButton = document.querySelector(".menu-button");
-const themeButton = document.querySelector(".theme-toggle");
-const languageButton = document.querySelector(".language-toggle");
-const navLinks = document.querySelectorAll(".site-header nav a");
-const themeMeta = document.querySelector('meta[name="theme-color"]');
-const descriptionMeta = document.querySelector('meta[name="description"]');
-const ogTitleMeta = document.querySelector('meta[property="og:title"]');
-const ogDescriptionMeta = document.querySelector('meta[property="og:description"]');
+const root = document.documentElement
+const header = document.querySelector(".site-header")
+const menuButton = document.querySelector(".menu-button")
+const themeButton = document.querySelector(".theme-toggle")
+const languageButton = document.querySelector(".language-toggle")
+const navLinks = document.querySelectorAll(".site-header nav a")
+const themeMeta = document.querySelector('meta[name="theme-color"]')
+const descriptionMeta = document.querySelector('meta[name="description"]')
+const ogTitleMeta = document.querySelector('meta[property="og:title"]')
+const ogDescriptionMeta = document.querySelector('meta[property="og:description"]')
 
 const translations = new Map([
-  ["Tentang", "About"], ["Teknologi", "Technology"], ["Proyek", "Projects"],
-  ["Perjalanan", "Journey"], ["Kontak", "Contact"],
+  ["Tentang", "About"],
+  ["Teknologi", "Technology"],
+  ["Proyek", "Projects"],
+  ["Perjalanan", "Journey"],
+  ["Kontak", "Contact"],
   ["Membangun sistem backend yang", "Building backend systems that are"],
-  ["andal", "reliable"], ["dan mudah dirawat.", "and easy to maintain."],
+  ["andal", "reliable"],
+  ["dan mudah dirawat.", "and easy to maintain."],
   ["Saya", "I’m"],
   ["Fokus saya ada pada Java, Spring Boot, Oracle Database, REST API, microservices, serta integrasi sistem dari proses bisnis hingga deployment.", "I focus on Java, Spring Boot, Oracle Database, REST APIs, microservices, and system integration—from business processes to deployment."],
-  ["Lihat studi kasus", "View case studies"], ["GitHub saya", "My GitHub"],
+  ["Lihat studi kasus", "View case studies"],
+  ["GitHub saya", "My GitHub"],
   ["01 / Tentang saya", "01 / About me"],
   ["Saya menikmati bagian sistem yang bekerja", "I enjoy the parts of a system that work"],
   ["di balik layar.", "behind the scenes."],
@@ -92,132 +97,123 @@ const translations = new Map([
   ["Mari membangun sistem yang", "Let’s build systems that are"],
   ["bisa diandalkan.", "dependable."],
   ["Punya tantangan backend, integrasi, automation, atau ide produk? Saya senang bertukar pikiran dan mengeksplorasi solusi.", "Have a backend, integration, automation challenge, or product idea? I’m happy to exchange ideas and explore solutions."],
-  ["Hubungi via GitHub", "Contact via GitHub"], ["Lihat GitLab", "View GitLab"]
-]);
+  ["Hubungi via GitHub", "Contact via GitHub"],
+  ["Lihat GitLab", "View GitLab"],
+])
 
-const originalText = new WeakMap();
+const originalText = new WeakMap()
 const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
   acceptNode(node) {
-    if (!node.parentElement || node.parentElement.closest("script, style")) return NodeFilter.FILTER_REJECT;
-    return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
-  }
-});
-const translatableNodes = [];
+    if (!node.parentElement || node.parentElement.closest("script, style")) return NodeFilter.FILTER_REJECT
+    return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+  },
+})
+const translatableNodes = []
 while (walker.nextNode()) {
-  const node = walker.currentNode;
-  originalText.set(node, node.nodeValue);
-  translatableNodes.push(node);
+  const node = walker.currentNode
+  originalText.set(node, node.nodeValue)
+  translatableNodes.push(node)
 }
 
-const savedTheme = localStorage.getItem("portfolio-theme");
-const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-const initialTheme = savedTheme || preferredTheme;
+const savedTheme = localStorage.getItem("portfolio-theme")
+const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+const initialTheme = savedTheme || preferredTheme
 
 function applyTheme(theme) {
-  root.dataset.theme = theme;
-  const english = root.lang === "en";
-  themeButton?.setAttribute("aria-label", english
-    ? (theme === "dark" ? "Enable light mode" : "Enable dark mode")
-    : (theme === "dark" ? "Aktifkan mode terang" : "Aktifkan mode gelap"));
-  themeMeta?.setAttribute("content", theme === "dark" ? "#111210" : "#f4f2ec");
+  root.dataset.theme = theme
+  const english = root.lang === "en"
+  themeButton?.setAttribute("aria-label", english ? (theme === "dark" ? "Enable light mode" : "Enable dark mode") : theme === "dark" ? "Aktifkan mode terang" : "Aktifkan mode gelap")
+  themeMeta?.setAttribute("content", theme === "dark" ? "#111210" : "#f4f2ec")
 }
 
 function applyLanguage(language) {
-  const english = language === "en";
-  root.lang = english ? "en" : "id";
+  const english = language === "en"
+  root.lang = english ? "en" : "id"
 
   translatableNodes.forEach((node) => {
-    const original = originalText.get(node);
-    const trimmed = original.trim();
-    const output = english ? translations.get(trimmed) : trimmed;
-    node.nodeValue = original.replace(trimmed, output || trimmed);
-  });
+    const original = originalText.get(node)
+    const trimmed = original.trim()
+    const output = english ? translations.get(trimmed) : trimmed
+    node.nodeValue = original.replace(trimmed, output || trimmed)
+  })
 
   languageButton?.querySelectorAll("[data-language]").forEach((item) => {
-    item.classList.toggle("active", item.dataset.language === root.lang);
-  });
+    item.classList.toggle("active", item.dataset.language === root.lang)
+  })
 
-  const title = "Ramdhan Saputra — Backend Developer";
-  const description = english
-    ? "Portfolio of Ramdhan Saputra, a Backend Developer focused on Java, Spring Boot, Oracle Database, REST APIs, microservices, and system integration."
-    : "Portofolio Ramdhan Saputra, Backend Developer dengan fokus pada Java, Spring Boot, Oracle Database, REST API, microservices, dan system integration.";
-  const socialDescription = english
-    ? "A backend developer who builds reliable APIs, microservices, schedulers, and system integrations."
-    : "Backend developer yang membangun API, microservices, scheduler, dan integrasi sistem yang andal.";
+  const title = "Ramdhan Ridho Saputra — Backend Developer"
+  const description = english ? "Portfolio of Ramdhan Ridho Saputra, a Backend Developer focused on Java, Spring Boot, Oracle Database, REST APIs, microservices, and system integration." : "Portofolio Ramdhan Ridho Saputra, Backend Developer dengan fokus pada Java, Spring Boot, Oracle Database, REST API, microservices, dan system integration."
+  const socialDescription = english ? "A backend developer who builds reliable APIs, microservices, schedulers, and system integrations." : "Backend developer yang membangun API, microservices, scheduler, dan integrasi sistem yang andal."
 
-  document.title = title;
-  descriptionMeta?.setAttribute("content", description);
-  ogTitleMeta?.setAttribute("content", title);
-  ogDescriptionMeta?.setAttribute("content", socialDescription);
-  languageButton?.setAttribute("aria-label", english ? "Switch language to Indonesian" : "Ubah bahasa ke Inggris");
-  languageButton?.setAttribute("title", english ? "Change language" : "Ganti bahasa");
-  document.querySelector(".brand")?.setAttribute("aria-label", english ? "Back to home" : "Kembali ke beranda");
-  document.querySelector(".site-header nav")?.setAttribute("aria-label", english ? "Main navigation" : "Navigasi utama");
+  document.title = title
+  descriptionMeta?.setAttribute("content", description)
+  ogTitleMeta?.setAttribute("content", title)
+  ogDescriptionMeta?.setAttribute("content", socialDescription)
+  languageButton?.setAttribute("aria-label", english ? "Switch language to Indonesian" : "Ubah bahasa ke Inggris")
+  languageButton?.setAttribute("title", english ? "Change language" : "Ganti bahasa")
+  document.querySelector(".brand")?.setAttribute("aria-label", english ? "Back to home" : "Kembali ke beranda")
+  document.querySelector(".site-header nav")?.setAttribute("aria-label", english ? "Main navigation" : "Navigasi utama")
 
-  const open = document.body.classList.contains("menu-open");
-  menuButton?.setAttribute("aria-label", english
-    ? (open ? "Close menu" : "Open menu")
-    : (open ? "Tutup menu" : "Buka menu"));
-  applyTheme(root.dataset.theme || initialTheme);
+  const open = document.body.classList.contains("menu-open")
+  menuButton?.setAttribute("aria-label", english ? (open ? "Close menu" : "Open menu") : open ? "Tutup menu" : "Buka menu")
+  applyTheme(root.dataset.theme || initialTheme)
 }
 
-const initialLanguage = localStorage.getItem("portfolio-language") === "en" ? "en" : "id";
-applyLanguage(initialLanguage);
-applyTheme(initialTheme);
+const initialLanguage = localStorage.getItem("portfolio-language") === "en" ? "en" : "id"
+applyLanguage(initialLanguage)
+applyTheme(initialTheme)
 
 function updateHeader() {
-  header?.classList.toggle("is-scrolled", window.scrollY > 24);
+  header?.classList.toggle("is-scrolled", window.scrollY > 24)
 }
 
-updateHeader();
-window.addEventListener("scroll", updateHeader, { passive: true });
+updateHeader()
+window.addEventListener("scroll", updateHeader, { passive: true })
 
 themeButton?.addEventListener("click", () => {
-  const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
-  applyTheme(nextTheme);
-  localStorage.setItem("portfolio-theme", nextTheme);
-});
+  const nextTheme = root.dataset.theme === "dark" ? "light" : "dark"
+  applyTheme(nextTheme)
+  localStorage.setItem("portfolio-theme", nextTheme)
+})
 
 languageButton?.addEventListener("click", () => {
-  const nextLanguage = root.lang === "en" ? "id" : "en";
-  applyLanguage(nextLanguage);
-  localStorage.setItem("portfolio-language", nextLanguage);
-});
+  const nextLanguage = root.lang === "en" ? "id" : "en"
+  applyLanguage(nextLanguage)
+  localStorage.setItem("portfolio-language", nextLanguage)
+})
 
 menuButton?.addEventListener("click", () => {
-  const isOpen = document.body.classList.toggle("menu-open");
-  menuButton.setAttribute("aria-expanded", String(isOpen));
-  menuButton.setAttribute("aria-label", root.lang === "en"
-    ? (isOpen ? "Close menu" : "Open menu")
-    : (isOpen ? "Tutup menu" : "Buka menu"));
-});
+  const isOpen = document.body.classList.toggle("menu-open")
+  menuButton.setAttribute("aria-expanded", String(isOpen))
+  menuButton.setAttribute("aria-label", root.lang === "en" ? (isOpen ? "Close menu" : "Open menu") : isOpen ? "Tutup menu" : "Buka menu")
+})
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    document.body.classList.remove("menu-open");
-    menuButton?.setAttribute("aria-expanded", "false");
-  });
-});
+    document.body.classList.remove("menu-open")
+    menuButton?.setAttribute("aria-expanded", "false")
+  })
+})
 
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
+          entry.target.classList.add("visible")
+          observer.unobserve(entry.target)
         }
-      });
+      })
     },
-    { threshold: 0.1 }
-  );
+    { threshold: 0.1 },
+  )
 
   document.querySelectorAll(".reveal").forEach((element, index) => {
-    element.style.transitionDelay = `${Math.min(index % 3, 2) * 70}ms`;
-    observer.observe(element);
-  });
+    element.style.transitionDelay = `${Math.min(index % 3, 2) * 70}ms`
+    observer.observe(element)
+  })
 } else {
-  document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible"));
+  document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible"))
 }
 
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear()

@@ -1,4 +1,4 @@
-# Portfolio Ramdhan Saputra
+# Portfolio Ramdhan Ridho Saputra
 
 Website portofolio statis untuk GitHub Pages, dibuat dengan HTML, CSS, dan JavaScript tanpa proses build.
 
