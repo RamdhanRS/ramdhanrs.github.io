@@ -1,4 +1,5 @@
 const root = document.documentElement;
+const header = document.querySelector(".site-header");
 const menuButton = document.querySelector(".menu-button");
 const themeButton = document.querySelector(".theme-toggle");
 const navLinks = document.querySelectorAll(".site-header nav a");
@@ -15,6 +16,13 @@ function applyTheme(theme) {
 }
 
 applyTheme(initialTheme);
+
+function updateHeader() {
+  header?.classList.toggle("is-scrolled", window.scrollY > 24);
+}
+
+updateHeader();
+window.addEventListener("scroll", updateHeader, { passive: true });
 
 themeButton?.addEventListener("click", () => {
   const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
