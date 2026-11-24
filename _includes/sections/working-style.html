@@ -1,0 +1,79 @@
+<!-- ===== 04 · Cara kerja ===== -->
+    <section class="working split-section section-shell" id="working-style">
+      <div class="side-object side-prism side-right" aria-hidden="true"><i></i><i></i><span>FLOW</span></div>
+      <div class="section-number reveal">04 / Cara kerja</div>
+      <div>
+        <h2 class="section-title reveal">Tenang saat debugging, teliti saat <span>menyusun solusi.</span></h2>
+        <div class="workflow-board">
+          <article class="workflow-card evidence-card reveal">
+            <div class="workflow-top"><span>01 / Evidence</span><i>INPUT</i></div>
+            <div class="workflow-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6" />
+                <path d="m16 16 4 4M8 9h6M8 12h4" /></svg>
+            </div>
+            <h3>Mulai dari bukti</h3>
+            <p>Membaca log, stack trace, payload, dan data aktual sebelum menyimpulkan sumber masalah.</p>
+            <div class="log-preview" aria-hidden="true">
+              <span><b>INFO</b> request received</span>
+              <span><b>WARN</b> response delayed</span>
+              <span><b>TRACE</b> root cause found</span>
+            </div>
+          </article>
+
+          <article class="workflow-card structure-card reveal">
+            <div class="workflow-top"><span>02 / Structure</span><i>DESIGN</i></div>
+            <div class="workflow-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="4" width="6" height="5" rx="1" />
+                <rect x="15" y="4" width="6" height="5" rx="1" />
+                <rect x="9" y="15" width="6" height="5" rx="1" />
+                <path d="M6 9v3h12V9M12 12v3" /></svg>
+            </div>
+            <h3>Jaga struktur</h3>
+            <p>Memisahkan tanggung jawab kode agar perubahan lebih aman dan aplikasi mudah dirawat.</p>
+            <div class="layer-preview" aria-hidden="true"><span>Controller</span><i></i><span>Service</span><i></i><span>Repository</span></div>
+          </article>
+
+          <div class="workflow-core reveal" aria-hidden="true">
+            <div class="core-rings"><i></i><i></i><i></i></div>
+            <span>SOLVE</span>
+            <strong>WITH<br>CONTEXT</strong>
+            <small>observe · reason · improve</small>
+          </div>
+
+          <article class="workflow-card data-card reveal">
+            <div class="workflow-top"><span>03 / Data</span><i>PROCESS</i></div>
+            <div class="workflow-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <ellipse cx="12" cy="5" rx="7" ry="3" />
+                <path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" /></svg>
+            </div>
+            <h3>Pikirkan data</h3>
+            <p>Menulis query dengan mempertimbangkan ketepatan hasil, volume data, dan efisiensi eksekusi.</p>
+            <div class="query-preview" aria-hidden="true">
+              <code><b>SELECT</b> result</code>
+              <span><i style="--size: 62%"></i></span>
+              <small>optimized · 42ms</small>
+            </div>
+          </article>
+
+          <article class="workflow-card operations-card reveal">
+            <div class="workflow-top"><span>04 / Operations</span><i>OUTPUT</i></div>
+            <div class="workflow-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 17h10a4 4 0 0 0 .5-8A6 6 0 0 0 6.1 7.5 4.8 4.8 0 0 0 7 17Z" />
+                <path d="M9 13h6M12 10v6" /></svg>
+            </div>
+            <h3>Siap dioperasikan</h3>
+            <p>Memperhatikan konfigurasi, deployment, observability, dan perbedaan antar-environment.</p>
+            <div class="health-preview" aria-hidden="true">
+              <span><i></i>API</span><span><i></i>DB</span><span><i></i>JOB</span><strong>ALL SYSTEMS NORMAL</strong>
+            </div>
+          </article>
+        </div>
+        <div class="workflow-caption reveal"><span>Prinsip utama</span>
+          <p>Solusi yang baik tidak berhenti pada “berjalan”, tetapi juga dapat dipahami, diuji, dan dioperasikan.</p>
+        </div>
+      </div>
+    </section>

@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Marquee teknologi — dua pita yang bersilangan dalam ruang 3D
+   ========================================================================== */
+
+.tech-marquee {
+  position: relative;
+  height: 190px;
+  margin-block: 10px -20px;
+  overflow: hidden;
+  perspective: 900px;
+  pointer-events: none;
+}
+.marquee-band {
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  top: 50%;
+  overflow: hidden;
+  padding-block: 16px;
+  border-block: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.band-main {
+  z-index: 2;
+  background: var(--panel-dark);
+  color: var(--panel-dark-text);
+  transform: translateY(-50%) rotateX(14deg) rotateZ(-2.5deg);
+  box-shadow: 0 24px 50px color-mix(in srgb, var(--ink) 18%, transparent);
+}
+.band-alt {
+  z-index: 1;
+  background: var(--lime);
+  color: #111210;
+  transform: translateY(-50%) rotateX(-18deg) rotateZ(2.5deg) translateZ(-40px);
+}
+.marquee-track {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  animation: marquee 38s linear infinite;
+}
+.marquee-track.reverse { animation-direction: reverse; animation-duration: 46s; }
+.marquee-track span { font: 700 26px/1 var(--font-display); letter-spacing: -.04em; white-space: nowrap; }
+.marquee-track b { color: var(--lime); font-size: 16px; }
+.band-alt .marquee-track span { font-size: 18px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.band-alt .marquee-track b { color: #111210; font-size: 8px; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+@media (max-width: 680px) {
+  .tech-marquee { height: 140px; }
+  .marquee-band { padding-block: 11px; }
+  .marquee-track span { font-size: 19px; }
+  .band-alt .marquee-track span { font-size: 13px; }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+
+<head>
+{% include partials/head.html %}
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><i></i></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+{% include partials/header.html %}
+
+  <main id="main">
+{{ content }}
+  </main>
+
+{% include partials/footer.html %}
+
+  <button class="back-to-top" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">
+    <svg class="back-to-top-ring" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" /></svg>
+    <svg class="back-to-top-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+  </button>
+
+  <script type="module" src="assets/js/main.js?v={{ site.asset_version }}"></script>
+</body>
+
+</html>

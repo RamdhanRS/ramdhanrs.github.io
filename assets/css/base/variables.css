@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Design tokens — warna, tipografi, radius, easing
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Warna dasar */
+  --ink: #111210;
+  --muted: #62635d;
+  --paper: #f4f2ec;
+  --surface: #ebe9e2;
+  --card: #faf9f5;
+  --line: #d5d3cb;
+
+  /* Aksen */
+  --lime: #c8ff45;
+  --purple: #7059ee;
+  --blue: #3da9e8;
+  --orange: #ff6542;
+  --green: #5b923f;
+  --accent-text: #4d3bd1;
+
+  /* Panel gelap (dipakai di kedua tema) */
+  --panel-dark: #171816;
+  --panel-dark-text: #f1f1ea;
+  --panel-dark-muted: #a9aba4;
+  --panel-dark-line: #3a3b37;
+
+  /* Gradien */
+  --grad-brand: linear-gradient(120deg, var(--purple) 0%, #b45cff 45%, var(--orange) 100%);
+  --grad-lime: linear-gradient(120deg, var(--lime), #7dffb0);
+
+  /* Tipografi */
+  --font-display: "Manrope", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Skala ukuran label kecil (dibuat lebih terbaca dibanding versi lama) */
+  --fs-micro: 10px;
+  --fs-label: 11px;
+  --fs-small: 13px;
+
+  /* Bentuk & gerak */
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --ease-out: cubic-bezier(.2, .8, .2, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --shadow-soft: 0 18px 50px color-mix(in srgb, var(--ink) 8%, transparent);
+
+  /* Lebar konten */
+  --content: 1240px;
+  --gutter: 72px;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #f1f1ea;
+  --muted: #a3a49d;
+  --paper: #0f100e;
+  --surface: #181916;
+  --card: #1c1d1a;
+  --line: #31322d;
+  --lime: #c8ff45;
+  --purple: #9c8cff;
+  --blue: #5cbcf2;
+  --orange: #ff7a5d;
+  --green: #80b665;
+  --accent-text: #b3a8ff;
+  --panel-dark: #151613;
+  --panel-dark-text: #f1f1ea;
+  --panel-dark-muted: #afb1aa;
+  --panel-dark-line: #3d3e39;
+  --shadow-soft: 0 18px 50px rgba(0, 0, 0, .35);
+}

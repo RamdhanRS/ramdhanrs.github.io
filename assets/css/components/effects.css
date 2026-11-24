@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Efek global: noise, reveal on scroll, progress bar, cursor glow,
+   tombol kembali ke atas, dan tilt 3D pada kartu
+   ========================================================================== */
+
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+}
+
+/* ---------- Reveal saat scroll ----------
+   Memakai properti `translate` (bukan `transform`) supaya tidak bentrok
+   dengan transform tilt 3D pada kartu. */
+.js .reveal { opacity: 0; translate: 0 26px; transition: opacity .8s ease, translate .8s var(--ease-out); }
+.js .reveal.visible { opacity: 1; translate: 0 0; }
+
+/* ---------- Progress bar scroll ---------- */
+.scroll-progress { position: fixed; inset: 0 0 auto; z-index: 60; height: 3px; pointer-events: none; }
+.scroll-progress i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), #b45cff, var(--orange), var(--lime));
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--purple) 60%, transparent);
+}
+
+/* ---------- Cahaya yang mengikuti kursor (desktop) ---------- */
+.cursor-glow {
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 560px;
+  height: 560px;
+  margin: -280px 0 0 -280px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, color-mix(in srgb, var(--purple) 16%, transparent), transparent 62%);
+  opacity: 0;
+  transform: translate3d(var(--cx, -999px), var(--cy, -999px), 0);
+  transition: opacity .5s;
+}
+.has-pointer .cursor-glow { opacity: 1; }
+[data-theme="dark"] .cursor-glow { background: radial-gradient(circle, color-mix(in srgb, var(--purple) 20%, transparent), transparent 62%); }
+
+/* ---------- Tombol kembali ke atas dengan cincin progress ---------- */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 45;
+  display: grid;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--card) 94%, transparent);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px) scale(.9);
+  transition: opacity .3s, transform .4s var(--ease-spring), border-color .2s;
+}
+.back-to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+.back-to-top:hover { border-color: var(--purple); }
+.back-to-top > svg { grid-area: 1 / 1; }
+.back-to-top-icon { width: 18px; transition: transform .3s var(--ease-out); }
+.back-to-top:hover .back-to-top-icon { transform: translateY(-3px); }
+.back-to-top-ring { width: 50px; height: 50px; transform: rotate(-90deg); }
+.back-to-top-ring circle { stroke: var(--purple); stroke-width: 2; stroke-dasharray: 125.7; stroke-dashoffset: calc(125.7 * (1 - var(--progress, 0))); }
+
+/* ---------- Tilt 3D pada kartu ----------
+   JavaScript mengisi --rx/--ry (rotasi) dan --mx/--my (posisi kursor). */
+.tilt {
+  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+}
+.tilt.is-tilting { will-change: transform; }
+.tilt.is-tilting { transition-duration: .12s, .3s, .3s !important; }
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--glare, #fff) 16%, transparent), transparent 55%);
+  opacity: 0;
+  transition: opacity .35s;
+}
+.tilt:hover .tilt-glare { opacity: 1; }
+[data-theme="dark"] .tilt-glare { --glare: var(--purple); }
+
+/* Animasi di section yang sedang tidak terlihat dijeda (hemat CPU/GPU saat scroll) */
+.js .is-offscreen, .js .is-offscreen *, .js .is-offscreen *::before, .js .is-offscreen *::after { animation-play-state: paused !important; }
+
+/* Keyframes bersama (dipakai di beberapa section) */
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes eq { to { transform: scaleY(.45); } }
+@keyframes pulse-soft { 50% { opacity: .35; } }
+
+/* Efek magnetik untuk tombol */
+.magnetic { transform: translate3d(var(--tx, 0), var(--ty, 0), 0); }
+
+@media (max-width: 680px) {
+  .back-to-top { right: 16px; bottom: 16px; width: 44px; height: 44px; }
+  .back-to-top-ring { width: 44px; height: 44px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; translate: none; }
+  .tilt { transform: none !important; }
+  .cursor-glow { display: none; }
+}

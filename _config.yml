@@ -1,0 +1,32 @@
+# Konfigurasi Jekyll untuk GitHub Pages.
+# GitHub Pages otomatis membangun situs ini: setiap section di _includes/sections
+# digabung menjadi satu index.html saat deploy.
+
+title: "Ramdhan Ridho Saputra — Backend Developer"
+description: "Portofolio Ramdhan Ridho Saputra, Backend Developer dengan fokus pada Java, Spring Boot, Oracle Database, REST API, microservices, dan system integration."
+author: "Ramdhan Ridho Saputra"
+lang: id
+github_username: RamdhanRS
+gitlab_username: RamdhanRS
+avatar: "https://avatars.githubusercontent.com/u/85733403?v=4"
+
+# Visitor counter (counterapi.dev v2).
+# Buat workspace di https://counterapi.dev lalu isi nama workspace-nya di sini.
+# Kosongkan counter_workspace untuk menyembunyikan angka kunjungan.
+counter_workspace: ""
+counter_name: "pageviews"
+
+# Versi aset untuk cache busting. Naikkan angkanya bila CSS/JS berubah.
+asset_version: "2.1.0"
+
+markdown: kramdown
+
+exclude:
+  - README.md
+  - LICENSE
+  - tools/
+  - _site/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
