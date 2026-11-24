@@ -7,7 +7,7 @@
 import { createStage, themeColors } from "./stage.js"
 
 export function initHeroScene(canvas, stageElement) {
-  return createStage(canvas, (THREE) => {
+  return createStage(canvas, (THREE, { reducedMotion }) => {
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(38, 1, .1, 100)
     camera.position.set(0, 0, 7.4)
@@ -140,7 +140,9 @@ export function initHeroScene(canvas, stageElement) {
       rimLight.color.copy(c.lime)
       fillLight.color.copy(c.purple)
       ambient.intensity = c.dark ? .45 : .8
+      fadeMaterials.forEach((material) => { material.userData.base = material.opacity })
     }
+    const fadeMaterials = [shellMaterial, shellLinesMaterial, ringMaterial, linkMaterial, starMaterial]
     applyTheme()
 
     // ---------- Interaksi: mouse & scroll ----------
@@ -166,16 +168,34 @@ export function initHeroScene(canvas, stageElement) {
     const tmp = new THREE.Vector3()
     const coreAnchor = new THREE.Vector3()
 
+    let baseZ = 7.4
     const resize = (width, height) => {
       // Layar sempit: mundurkan kamera agar orbit tetap muat
-      camera.position.z = width / height < .9 ? 9.2 : 7.4
+      baseZ = width / height < .9 ? 9.2 : 7.4
     }
+
+    // Easing untuk animasi pembuka
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3)
+    const easeOutBack = (t) => 1 + 2.4 * Math.pow(t - 1, 3) + 1.4 * Math.pow(t - 1, 2)
 
     const update = (time, delta) => {
       pointer.x += (pointer.tx - pointer.x) * .05
       pointer.y += (pointer.ty - pointer.y) * .05
 
-      world.rotation.y = time * .12 + pointer.x * .45 + scrollRatio * 1.4
+      // ---------- Intro: node tersebar lalu menyatu ke inti (±2.4 detik) ----------
+      const t = reducedMotion ? 1 : Math.min(time / 2.4, 1)
+      const intro = easeOutCubic(t)
+      const spread = 1 - intro
+      core.scale.setScalar(reducedMotion ? 1 : Math.max(.001, easeOutBack(Math.min(time / 1.6, 1))))
+      shell.scale.setScalar(1 + spread * 1.8)
+      shellLines.scale.copy(shell.scale)
+      fadeMaterials.forEach((material) => { material.opacity = (material.userData.base ?? material.opacity) * intro })
+
+      // ---------- Scroll: orb mundur & naik saat melewati hero ----------
+      camera.position.z = baseZ + scrollRatio * 2.6
+      world.position.y = scrollRatio * .9
+
+      world.rotation.y = time * .12 + pointer.x * .45 + scrollRatio * 1.4 + spread * 2.2
       world.rotation.x = .25 + pointer.y * .25 + scrollRatio * .4
       core.rotation.x = time * .25
       core.rotation.z = time * .18
@@ -188,7 +208,9 @@ export function initHeroScene(canvas, stageElement) {
 
       satellites.forEach((satellite, index) => {
         const angle = time * satellite.speed + satellite.offset
-        satellite.mesh.position.set(Math.cos(angle) * satellite.radius, Math.sin(angle) * satellite.radius, 0)
+        const radius = satellite.radius * (1 + spread * 1.4)
+        satellite.mesh.position.set(Math.cos(angle) * radius, Math.sin(angle) * radius, 0)
+        satellite.mesh.scale.setScalar(.3 + intro * .7)
         satellite.mesh.rotation.x += delta * .8
         satellite.mesh.rotation.y += delta * 1.1
 
@@ -201,7 +223,7 @@ export function initHeroScene(canvas, stageElement) {
         const packet = packets[index]
         const progress = (time * packet.speed + packet.offset) % 1
         packet.mesh.position.lerpVectors(coreAnchor, tmp, progress)
-        packet.mesh.scale.setScalar(Math.sin(progress * Math.PI) * 1.2 + .2)
+        packet.mesh.scale.setScalar((Math.sin(progress * Math.PI) * 1.2 + .2) * Math.max(0, intro * 4 - 3))
       })
       linkGeometry.attributes.position.needsUpdate = true
     }

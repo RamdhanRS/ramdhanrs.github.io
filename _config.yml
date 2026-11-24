@@ -17,7 +17,7 @@ counter_workspace: ""
 counter_name: "pageviews"
 
 # Versi aset untuk cache busting. Naikkan angkanya bila CSS/JS berubah.
-asset_version: "2.1.0"
+asset_version: "2.2.0"
 
 markdown: kramdown
 

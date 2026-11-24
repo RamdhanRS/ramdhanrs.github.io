@@ -5,6 +5,13 @@ const root = document.documentElement
 const backToTop = document.querySelector(".back-to-top")
 const progressBar = document.querySelector(".scroll-progress")
 const timeline = document.querySelector(".timeline")
+const timelineItems = timeline ? [...timeline.querySelectorAll(".timeline-item")] : []
+let markerOffsets = []
+
+/** Posisi marker dibaca sekali (dan saat resize) agar scroll tidak memicu layout. */
+function measureMarkers() {
+  markerOffsets = timelineItems.map((item) => item.offsetTop + 56)
+}
 
 function initReveal() {
   const elements = document.querySelectorAll(".reveal")
@@ -16,8 +23,11 @@ function initReveal() {
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return
-        entry.target.classList.add("visible")
-        observer.unobserve(entry.target)
+        const target = entry.target
+        target.classList.add("visible")
+        observer.unobserve(target)
+        // Hapus delay stagger setelah muncul agar efek hover tidak ikut tertunda
+        setTimeout(() => { target.style.transitionDelay = "" }, 1300)
       })
     },
     { threshold: .1, rootMargin: "0px 0px -40px 0px" },
@@ -55,14 +65,19 @@ function updateScroll() {
     const value = clamp((window.innerHeight * .6 - rect.top) / rect.height, 0, 1)
     timeline.style.setProperty("--timeline-progress", value.toFixed(4))
     timeline.style.setProperty("--timeline-px", `${(value * rect.height).toFixed(1)}px`)
+    // Nyalakan marker yang sudah dilewati garis progress
+    const filled = value * rect.height
+    timelineItems.forEach((item, index) => item.classList.toggle("is-lit", filled >= markerOffsets[index]))
   }
 }
 
 export function initScrollEffects() {
   initReveal()
   initOffscreenPause()
+  measureMarkers()
   updateScroll()
   window.addEventListener("scroll", rafThrottle(updateScroll), { passive: true })
-  window.addEventListener("resize", rafThrottle(updateScroll))
+  window.addEventListener("resize", rafThrottle(() => { measureMarkers(); updateScroll() }))
+  window.addEventListener("load", measureMarkers)
   backToTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }))
 }

@@ -8,8 +8,8 @@
   margin-block: 10px -20px;
   overflow: hidden;
   perspective: 900px;
-  pointer-events: none;
 }
+.marquee-band { cursor: default; }
 .marquee-band {
   position: absolute;
   left: -5%;
