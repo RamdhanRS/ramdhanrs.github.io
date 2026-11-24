@@ -1,15 +1,9 @@
-const root = document.documentElement
-const header = document.querySelector(".site-header")
-const menuButton = document.querySelector(".menu-button")
-const themeButton = document.querySelector(".theme-toggle")
-const languageButton = document.querySelector(".language-toggle")
-const navLinks = document.querySelectorAll(".site-header nav a")
-const themeMeta = document.querySelector('meta[name="theme-color"]')
-const descriptionMeta = document.querySelector('meta[name="description"]')
-const ogTitleMeta = document.querySelector('meta[property="og:title"]')
-const ogDescriptionMeta = document.querySelector('meta[property="og:description"]')
-
-const translations = new Map([
+/**
+ * Kamus terjemahan Indonesia → Inggris.
+ * Kunci = teks asli (spasi dirapikan), nilai = terjemahan.
+ * Tambahkan baris baru di sini bila menambah teks pada HTML.
+ */
+export const translations = new Map([
   ["Tentang", "About"],
   ["Teknologi", "Technology"],
   ["Proyek", "Projects"],
@@ -100,146 +94,36 @@ const translations = new Map([
   ["Hubungi via GitHub", "Contact via GitHub"],
   ["Lihat GitLab", "View GitLab"],
   ["Total kunjungan", "Total visits"],
+  ["Lewati ke konten", "Skip to content"],
+  [". Fokus saya ada pada Java, Spring Boot, Oracle Database, REST API, microservices, serta integrasi sistem dari proses bisnis hingga deployment.", ". I focus on Java, Spring Boot, Oracle Database, REST APIs, microservices, and system integration—from business processes to deployment."],
+  ["Java dan Spring Boot", "Java and Spring Boot"],
+  ["Timeout dan error handling", "Timeout and error handling"],
+  ["Logging untuk troubleshooting", "Logging for troubleshooting"],
+  ["Text preprocessing dan TF-IDF", "Text preprocessing and TF-IDF"],
 ])
 
-const originalText = new WeakMap()
-const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-  acceptNode(node) {
-    if (!node.parentElement || node.parentElement.closest("script, style")) return NodeFilter.FILTER_REJECT
-    return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+/** Terjemahan atribut (aria-label / title) berdasarkan selector. */
+export const attributeTranslations = [
+  { selector: ".brand", attr: "aria-label", id: "Kembali ke beranda", en: "Back to home" },
+  { selector: ".site-header nav", attr: "aria-label", id: "Navigasi utama", en: "Main navigation" },
+  { selector: ".language-toggle", attr: "aria-label", id: "Ubah bahasa ke Inggris", en: "Switch language to Indonesian" },
+  { selector: ".language-toggle", attr: "title", id: "Ganti bahasa", en: "Change language" },
+  { selector: ".theme-toggle", attr: "title", id: "Ganti tema", en: "Change theme" },
+  { selector: ".back-to-top", attr: "aria-label", id: "Kembali ke atas", en: "Back to top" },
+  { selector: ".back-to-top", attr: "title", id: "Kembali ke atas", en: "Back to top" },
+  { selector: ".hero-console", attr: "aria-label", id: "Ilustrasi profil backend developer", en: "Backend developer profile illustration" },
+  { selector: ".hero-pipeline", attr: "aria-label", id: "Alur kemampuan backend", en: "Backend capability flow" },
+  { selector: ".hero-badges", attr: "aria-label", id: "Teknologi utama", en: "Core technologies" },
+  { selector: ".visitor-counter", attr: "title", id: "Jumlah sesi kunjungan ke portofolio", en: "Number of portfolio visit sessions" },
+]
+
+export const meta = {
+  id: {
+    description: "Portofolio Ramdhan Ridho Saputra, Backend Developer dengan fokus pada Java, Spring Boot, Oracle Database, REST API, microservices, dan system integration.",
+    social: "Backend developer yang membangun API, microservices, scheduler, dan integrasi sistem yang andal.",
   },
-})
-const translatableNodes = []
-while (walker.nextNode()) {
-  const node = walker.currentNode
-  originalText.set(node, node.nodeValue)
-  translatableNodes.push(node)
+  en: {
+    description: "Portfolio of Ramdhan Ridho Saputra, a Backend Developer focused on Java, Spring Boot, Oracle Database, REST APIs, microservices, and system integration.",
+    social: "A backend developer who builds reliable APIs, microservices, schedulers, and system integrations.",
+  },
 }
-
-const savedTheme = localStorage.getItem("portfolio-theme")
-const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-const initialTheme = savedTheme || preferredTheme
-
-function applyTheme(theme) {
-  root.dataset.theme = theme
-  const english = root.lang === "en"
-  themeButton?.setAttribute("aria-label", english ? (theme === "dark" ? "Enable light mode" : "Enable dark mode") : theme === "dark" ? "Aktifkan mode terang" : "Aktifkan mode gelap")
-  themeMeta?.setAttribute("content", theme === "dark" ? "#111210" : "#f4f2ec")
-}
-
-function applyLanguage(language) {
-  const english = language === "en"
-  root.lang = english ? "en" : "id"
-
-  translatableNodes.forEach((node) => {
-    const original = originalText.get(node)
-    const trimmed = original.trim()
-    const output = english ? translations.get(trimmed) : trimmed
-    node.nodeValue = original.replace(trimmed, output || trimmed)
-  })
-
-  languageButton?.querySelectorAll("[data-language]").forEach((item) => {
-    item.classList.toggle("active", item.dataset.language === root.lang)
-  })
-
-  const title = "Ramdhan Ridho Saputra — Backend Developer"
-  const description = english ? "Portfolio of Ramdhan Ridho Saputra, a Backend Developer focused on Java, Spring Boot, Oracle Database, REST APIs, microservices, and system integration." : "Portofolio Ramdhan Ridho Saputra, Backend Developer dengan fokus pada Java, Spring Boot, Oracle Database, REST API, microservices, dan system integration."
-  const socialDescription = english ? "A backend developer who builds reliable APIs, microservices, schedulers, and system integrations." : "Backend developer yang membangun API, microservices, scheduler, dan integrasi sistem yang andal."
-
-  document.title = title
-  descriptionMeta?.setAttribute("content", description)
-  ogTitleMeta?.setAttribute("content", title)
-  ogDescriptionMeta?.setAttribute("content", socialDescription)
-  languageButton?.setAttribute("aria-label", english ? "Switch language to Indonesian" : "Ubah bahasa ke Inggris")
-  languageButton?.setAttribute("title", english ? "Change language" : "Ganti bahasa")
-  document.querySelector(".brand")?.setAttribute("aria-label", english ? "Back to home" : "Kembali ke beranda")
-  document.querySelector(".site-header nav")?.setAttribute("aria-label", english ? "Main navigation" : "Navigasi utama")
-
-  const open = document.body.classList.contains("menu-open")
-  menuButton?.setAttribute("aria-label", english ? (open ? "Close menu" : "Open menu") : open ? "Tutup menu" : "Buka menu")
-  applyTheme(root.dataset.theme || initialTheme)
-}
-
-const initialLanguage = localStorage.getItem("portfolio-language") === "en" ? "en" : "id"
-applyLanguage(initialLanguage)
-applyTheme(initialTheme)
-
-function updateHeader() {
-  header?.classList.toggle("is-scrolled", window.scrollY > 24)
-}
-
-updateHeader()
-window.addEventListener("scroll", updateHeader, { passive: true })
-
-themeButton?.addEventListener("click", () => {
-  const nextTheme = root.dataset.theme === "dark" ? "light" : "dark"
-  applyTheme(nextTheme)
-  localStorage.setItem("portfolio-theme", nextTheme)
-})
-
-languageButton?.addEventListener("click", () => {
-  const nextLanguage = root.lang === "en" ? "id" : "en"
-  applyLanguage(nextLanguage)
-  localStorage.setItem("portfolio-language", nextLanguage)
-})
-
-menuButton?.addEventListener("click", () => {
-  const isOpen = document.body.classList.toggle("menu-open")
-  menuButton.setAttribute("aria-expanded", String(isOpen))
-  menuButton.setAttribute("aria-label", root.lang === "en" ? (isOpen ? "Close menu" : "Open menu") : isOpen ? "Tutup menu" : "Buka menu")
-})
-
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    document.body.classList.remove("menu-open")
-    menuButton?.setAttribute("aria-expanded", "false")
-  })
-})
-
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible")
-          observer.unobserve(entry.target)
-        }
-      })
-    },
-    { threshold: 0.1 },
-  )
-
-  document.querySelectorAll(".reveal").forEach((element, index) => {
-    element.style.transitionDelay = `${Math.min(index % 3, 2) * 70}ms`
-    observer.observe(element)
-  })
-} else {
-  document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible"))
-}
-
-document.getElementById("year").textContent = new Date().getFullYear()
-
-const visitorCount = document.getElementById("visitor-count")
-const counterBaseUrl = "https://api.counterapi.dev/v1/ramdhanrs-portfolio/pageviews"
-const isLocalPreview = ["", "localhost", "127.0.0.1"].includes(window.location.hostname)
-const hasCountedSession = sessionStorage.getItem("portfolio-visit-counted") === "true"
-
-async function loadVisitorCount() {
-  try {
-    const shouldIncrement = !isLocalPreview && !hasCountedSession
-    const response = await fetch(`${counterBaseUrl}${shouldIncrement ? "/up" : ""}`)
-    if (!response.ok) throw new Error("Visitor counter unavailable")
-
-    const data = await response.json()
-    visitorCount.textContent = new Intl.NumberFormat(root.lang === "en" ? "en-US" : "id-ID").format(data.count)
-
-    if (shouldIncrement) {
-      sessionStorage.setItem("portfolio-visit-counted", "true")
-    }
-  } catch {
-    visitorCount.textContent = "—"
-    visitorCount.closest(".visitor-counter")?.setAttribute("title", root.lang === "en" ? "Visitor count is temporarily unavailable" : "Jumlah kunjungan sementara tidak tersedia")
-  }
-}
-
-loadVisitorCount()

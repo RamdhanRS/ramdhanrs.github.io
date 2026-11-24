@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Kontainer, section shell, dan heading section
+   ========================================================================== */
+
+.site-header, .section-shell, .site-footer, .contact-inner {
+  width: min(var(--content), calc(100% - var(--gutter)));
+  margin-inline: auto;
+}
+
+/* Section dengan dekorasi samping */
+.stack, .projects, .journey, .platforms { padding-block: 130px; border-top: 1px solid var(--line); }
+.about, .stack, .projects, .working, .journey, .platforms { position: relative; isolation: isolate; }
+.about > *:not(.side-object), .stack > *:not(.side-object), .projects > *:not(.side-object),
+.working > *:not(.side-object), .journey > *:not(.side-object), .platforms > *:not(.side-object) { position: relative; z-index: 1; }
+
+/* Layout dua kolom (nomor section + konten) */
+.split-section { padding-block: 135px; display: grid; grid-template-columns: 175px 1fr; gap: 45px; border-top: 1px solid var(--line); }
+
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.section-number::before { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .6; }
+.split-section > .section-number { align-self: start; position: sticky; top: 110px; }
+
+.section-title {
+  max-width: 920px;
+  margin-bottom: 65px;
+  font: 600 clamp(39px, 5vw, 68px)/1.08 var(--font-display);
+  letter-spacing: -.06em;
+  text-wrap: balance;
+}
+.section-title span {
+  color: var(--muted);
+  background: linear-gradient(100deg, var(--muted) 40%, color-mix(in srgb, var(--purple) 70%, var(--muted)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 50px; margin-bottom: 70px; }
+.section-heading .section-number { margin-bottom: 24px; }
+.section-heading .section-title { margin: 0; }
+.section-note { max-width: 330px; margin: 0; color: var(--muted); font-size: var(--fs-small); line-height: 1.7; }
+
+/* ---------- Responsif ---------- */
+@media (max-width: 980px) {
+  .site-header, .section-shell, .site-footer, .contact-inner { width: min(100% - 40px, 760px); }
+  .split-section { grid-template-columns: 1fr; padding-block: 105px; }
+  .split-section > .section-number { position: static; }
+}
+
+@media (max-width: 680px) {
+  .site-header, .section-shell, .site-footer, .contact-inner { width: calc(100% - 34px); }
+  .section-title { margin-bottom: 42px; font-size: 37px; }
+  .stack, .projects, .journey, .platforms { padding-block: 90px; }
+  .section-heading { align-items: flex-start; flex-direction: column; margin-bottom: 50px; }
+}
+
+@media (max-width: 420px) {
+  .site-header, .section-shell, .site-footer, .contact-inner { width: calc(100% - 26px); }
+  .split-section, .stack, .projects, .journey, .platforms { padding-block: 74px; }
+  .section-title { margin-bottom: 36px; font-size: 32px; line-height: 1.14; }
+}
+
+@media (min-width: 981px) and (max-width: 1199px) {
+  .site-header, .section-shell, .site-footer, .contact-inner { width: calc(100% - 56px); }
+  .split-section { grid-template-columns: 135px 1fr; gap: 30px; }
+  .section-title { font-size: clamp(42px, 5.1vw, 58px); }
+}
+
+@media (min-width: 1600px) {
+  :root { --content: 1460px; --gutter: 120px; }
+  .split-section, .stack, .projects, .journey, .platforms { padding-block: 155px; }
+  .split-section { grid-template-columns: 205px 1fr; gap: 55px; }
+  .section-title { max-width: 1050px; font-size: clamp(62px, 4.2vw, 76px); }
+}
+
+@media (min-width: 2200px) {
+  :root { --content: 1760px; --gutter: 200px; }
+  .section-title { max-width: 1250px; font-size: 88px; }
+  .section-number { font-size: 13px; }
+}

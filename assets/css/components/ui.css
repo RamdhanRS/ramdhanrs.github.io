@@ -1,0 +1,92 @@
+/* ==========================================================================
+   Komponen UI: eyebrow, tombol, tautan
+   ========================================================================== */
+
+.eyebrow {
+  width: max-content;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  padding: 7px 14px 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--card) 85%, transparent);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.eyebrow span {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  position: relative;
+}
+.eyebrow span::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--green) 30%, transparent);
+  animation: pulse-dot 2.4s ease-out infinite;
+}
+@keyframes pulse-dot {
+  from { transform: scale(.6); opacity: 1; }
+  to { transform: scale(1.6); opacity: 0; }
+}
+
+/* Tombol */
+.button {
+  min-height: 57px;
+  padding: 0 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 99px;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  transition: transform .3s var(--ease-out), background .25s, color .25s, box-shadow .3s;
+}
+.button span { display: inline-block; transition: transform .3s var(--ease-out); }
+.button:hover span { transform: translate(2px, 2px) rotate(-8deg); }
+.button-primary { background: var(--ink); color: var(--paper); box-shadow: 0 14px 30px color-mix(in srgb, var(--ink) 18%, transparent); }
+.button-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--grad-brand);
+  opacity: 0;
+  transition: opacity .35s;
+}
+.button-primary:hover { color: #fff; box-shadow: 0 18px 40px color-mix(in srgb, var(--purple) 35%, transparent); }
+.button-primary:hover::before { opacity: 1; }
+
+.text-link { display: inline-flex; gap: 8px; padding-bottom: 5px; border-bottom: 1px solid currentColor; font-size: var(--fs-small); font-weight: 600; }
+.text-link span { transition: transform .2s; }
+.text-link:hover span { transform: translate(3px, -2px); }
+
+.hero-actions, .contact-actions { display: flex; align-items: center; gap: 30px; margin-top: 38px; }
+
+/* ---------- Responsif ---------- */
+@media (max-width: 680px) {
+  .hero-actions, .contact-actions { align-items: flex-start; flex-direction: column; gap: 23px; }
+}
+
+@media (max-width: 420px) {
+  .eyebrow { font-size: 9px; line-height: 1.5; }
+  .button { width: 100%; min-height: 52px; padding-inline: 18px; }
+}
+
+@media (min-width: 2200px) {
+  .eyebrow { font-size: 13px; }
+  .button { min-height: 66px; padding-inline: 30px; font-size: 15px; }
+}

@@ -1,0 +1,52 @@
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ site.description }}">
+  <meta name="author" content="{{ site.author }}">
+  <meta name="theme-color" content="#f4f2ec">
+  <meta property="og:title" content="{{ site.title }}">
+  <meta property="og:description" content="Backend developer yang membangun API, microservices, scheduler, dan integrasi sistem yang andal.">
+  <meta property="og:image" content="{{ site.avatar }}">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <title>{{ site.title }}</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <!-- Terapkan tema & bahasa sebelum render agar tidak ada kedipan tema terang -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("portfolio-theme")
+        var dark = window.matchMedia("(prefers-color-scheme: dark)").matches
+        document.documentElement.dataset.theme = saved || (dark ? "dark" : "light")
+        if (localStorage.getItem("portfolio-language") === "en") document.documentElement.lang = "en"
+      } catch (e) {}
+      document.documentElement.classList.add("js")
+    })()
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Base -->
+  <link rel="stylesheet" href="assets/css/base/variables.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/base/reset.css?v={{ site.asset_version }}">
+  <!-- Layout -->
+  <link rel="stylesheet" href="assets/css/layout/container.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/layout/header.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/layout/footer.css?v={{ site.asset_version }}">
+  <!-- Components -->
+  <link rel="stylesheet" href="assets/css/components/ui.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/components/effects.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/components/side-objects.css?v={{ site.asset_version }}">
+  <!-- Sections -->
+  <link rel="stylesheet" href="assets/css/sections/hero.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/sections/marquee.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/sections/about.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/sections/stack.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/sections/projects.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/sections/working-style.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/sections/journey.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/sections/platforms.css?v={{ site.asset_version }}">
+  <link rel="stylesheet" href="assets/css/sections/contact.css?v={{ site.asset_version }}">

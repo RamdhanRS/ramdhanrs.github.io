@@ -1,0 +1,130 @@
+/* ==========================================================================
+   04 · Cara kerja — workflow board dengan inti berputar
+   ========================================================================== */
+
+.workflow-board { display: grid; grid-template-columns: 1fr 180px 1fr; grid-template-areas: "evidence core structure" "data core operations"; gap: 14px; }
+.workflow-card {
+  --workflow-accent: var(--purple);
+  min-height: 330px;
+  padding: 27px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  transition: transform .3s var(--ease-out), border-color .3s, box-shadow .3s;
+}
+.workflow-card::after { content: ""; position: absolute; width: 150px; height: 150px; right: -100px; bottom: -100px; border-radius: 50%; background: var(--workflow-accent); opacity: .1; transition: transform .3s; }
+.workflow-card:hover { --lift: -5px; z-index: 2; border-color: color-mix(in srgb, var(--workflow-accent) 60%, var(--line)); box-shadow: 0 20px 45px color-mix(in srgb, var(--workflow-accent) 12%, transparent); }
+.workflow-card:hover::after { transform: scale(1.4); }
+.evidence-card { grid-area: evidence; }
+.structure-card { --workflow-accent: #42a7dc; grid-area: structure; }
+.data-card { --workflow-accent: #ef7554; grid-area: data; }
+.operations-card { --workflow-accent: #55a966; grid-area: operations; }
+
+.workflow-top { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; color: var(--workflow-accent); font-size: var(--fs-micro); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.workflow-top i { padding: 4px 8px; border: 1px solid color-mix(in srgb, var(--workflow-accent) 40%, var(--line)); border-radius: 99px; color: var(--muted); font-size: 9px; font-style: normal; }
+.workflow-icon { display: grid; width: 48px; height: 48px; margin: 31px 0 24px; position: relative; z-index: 1; place-items: center; border-radius: 14px; background: color-mix(in srgb, var(--workflow-accent) 12%, transparent); color: var(--workflow-accent); transition: transform .4s var(--ease-spring); }
+.workflow-card:hover .workflow-icon { transform: rotate(-10deg) scale(1.08); }
+.workflow-icon svg { width: 22px; }
+.workflow-card h3 { margin-bottom: 12px; position: relative; z-index: 1; font: 680 24px var(--font-display); letter-spacing: -.045em; }
+.workflow-card > p { max-width: 390px; position: relative; z-index: 1; color: var(--muted); font-size: var(--fs-small); line-height: 1.7; }
+
+.log-preview, .layer-preview, .query-preview, .health-preview { min-height: 55px; margin-top: 24px; position: relative; z-index: 1; }
+.log-preview { padding: 12px 14px; display: grid; gap: 4px; border-radius: 10px; background: #191a18; color: #9da098; font: 10px/1.5 var(--font-mono); }
+.log-preview b { color: var(--workflow-accent); font-weight: 600; }
+.log-preview span:nth-child(2) b { color: #e5b848; }
+.log-preview span:nth-child(3) b { color: var(--lime); }
+.layer-preview { display: flex; align-items: center; gap: 7px; }
+.layer-preview span { flex: 1; padding: 9px 5px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); font-size: 9px; text-align: center; transition: border-color .3s, color .3s; }
+.structure-card:hover .layer-preview span { border-color: color-mix(in srgb, var(--workflow-accent) 50%, var(--line)); color: var(--ink); }
+.layer-preview i { width: 8px; height: 1px; background: var(--workflow-accent); }
+.query-preview { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 7px 12px; }
+.query-preview code { color: var(--muted); font: 10px var(--font-mono); }
+.query-preview code b { color: var(--workflow-accent); }
+.query-preview > span { height: 5px; border-radius: 99px; background: var(--line); }
+.query-preview > span i { display: block; width: var(--size); height: 100%; border-radius: inherit; background: var(--workflow-accent); transition: width .8s var(--ease-out); }
+.data-card:hover .query-preview > span i { width: 92%; }
+.query-preview small { grid-column: 1 / -1; color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+.health-preview { display: grid; grid-template-columns: repeat(3, auto) 1fr; align-items: center; gap: 10px; }
+.health-preview span { display: flex; align-items: center; gap: 4px; color: var(--muted); font-size: 9px; }
+.health-preview span i { width: 6px; height: 6px; border-radius: 50%; background: var(--workflow-accent); box-shadow: 0 0 7px var(--workflow-accent); animation: pulse-soft 2s ease-in-out infinite; }
+.health-preview span:nth-child(2) i { animation-delay: -.6s; }
+.health-preview span:nth-child(3) i { animation-delay: -1.2s; }
+.health-preview strong { justify-self: end; color: var(--workflow-accent); font-size: 8px; letter-spacing: .09em; }
+
+/* Inti: cincin berputar 3D */
+.workflow-core {
+  grid-area: core;
+  min-height: 100%;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  background: var(--panel-dark);
+  color: var(--panel-dark-text);
+  text-align: center;
+  perspective: 600px;
+}
+.workflow-core::before, .workflow-core::after { content: ""; position: absolute; left: 50%; width: 1px; height: 80px; background: linear-gradient(transparent, var(--lime)); }
+.workflow-core::before { top: 0; }
+.workflow-core::after { bottom: 0; transform: rotate(180deg); }
+.workflow-core > span { position: relative; z-index: 1; color: var(--lime); font-size: var(--fs-micro); font-weight: 700; letter-spacing: .2em; }
+.workflow-core > strong { margin: 15px 0; position: relative; z-index: 1; font: 700 20px/1.2 var(--font-display); letter-spacing: -.04em; }
+.workflow-core > small { max-width: 110px; position: relative; z-index: 1; color: var(--panel-dark-muted); font-size: 9px; line-height: 1.7; letter-spacing: .08em; text-transform: uppercase; }
+.core-rings { position: absolute; width: 140px; height: 140px; transform-style: preserve-3d; animation: core-tumble 12s linear infinite; }
+.core-rings::before, .core-rings::after { content: ""; position: absolute; inset: 0; border: 1px solid color-mix(in srgb, var(--lime) 35%, var(--panel-dark-line)); border-radius: 50%; }
+.core-rings::before { transform: rotateY(60deg); }
+.core-rings::after { transform: rotateY(-60deg); border-color: color-mix(in srgb, var(--purple) 55%, var(--panel-dark-line)); }
+.core-rings i { position: absolute; inset: 0; border: 1px solid var(--panel-dark-line); border-radius: 50%; }
+.core-rings i:nth-child(2) { inset: 22%; background: color-mix(in srgb, var(--lime) 8%, transparent); }
+.core-rings i:nth-child(3) { inset: 46%; border: 0; background: var(--lime); box-shadow: 0 0 20px var(--lime); }
+@keyframes core-tumble { from { transform: rotateX(65deg) rotateZ(0deg); } to { transform: rotateX(65deg) rotateZ(360deg); } }
+
+.workflow-caption { padding: 25px 0; display: grid; grid-template-columns: 180px 1fr; border-bottom: 1px solid var(--line); }
+.workflow-caption span { color: var(--purple); font-size: var(--fs-micro); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.workflow-caption p { max-width: 650px; margin: 0; color: var(--muted); font-size: var(--fs-small); line-height: 1.7; }
+
+/* ---------- Responsif ---------- */
+@media (max-width: 980px) {
+  .workflow-board { grid-template-columns: 1fr 120px 1fr; }
+  .workflow-card { min-height: 350px; padding: 22px; }
+  .health-preview { grid-template-columns: repeat(3, auto); }
+  .health-preview strong { grid-column: 1 / -1; justify-self: start; }
+  .core-rings { width: 100px; height: 100px; }
+}
+
+@media (max-width: 680px) {
+  .workflow-board { grid-template-columns: 1fr; grid-template-areas: "core" "evidence" "structure" "data" "operations"; }
+  .workflow-core { min-height: 260px; }
+  .workflow-core::before, .workflow-core::after { display: none; }
+  .core-rings { width: 170px; height: 170px; }
+  .workflow-card { min-height: auto; padding: 25px; }
+  .workflow-caption { grid-template-columns: 1fr; gap: 9px; }
+}
+
+@media (max-width: 420px) {
+  .workflow-card { padding: 21px; }
+  .workflow-card h3 { font-size: 21px; }
+  .layer-preview { gap: 4px; }
+  .layer-preview span { padding-inline: 3px; font-size: 8px; }
+  .health-preview { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 981px) and (max-width: 1199px) {
+  .workflow-board { grid-template-columns: 1fr 130px 1fr; }
+  .workflow-card { min-height: 350px; padding: 22px; }
+  .core-rings { width: 110px; height: 110px; }
+}
+
+@media (min-width: 1600px) {
+  .workflow-card { min-height: 370px; padding: 32px; }
+}
+
+@media (min-width: 2200px) {
+  .workflow-board { grid-template-columns: 1fr 220px 1fr; gap: 20px; }
+  .workflow-card { min-height: 430px; }
+}
