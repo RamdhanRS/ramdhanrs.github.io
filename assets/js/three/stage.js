@@ -37,7 +37,7 @@ export function themeColors(THREE) {
 
 /**
  * @param {HTMLCanvasElement} canvas
- * @param {(THREE) => { scene, camera, update?: (time, delta) => void, resize?: (w, h) => void, theme?: () => void }} setup
+ * @param {(THREE, options: { reducedMotion: boolean }) => { scene, camera, update?: (time, delta) => void, resize?: (w, h) => void, theme?: () => void }} setup
  */
 export async function createStage(canvas, setup) {
   const THREE = await loadThree()
@@ -49,7 +49,7 @@ export async function createStage(canvas, setup) {
   renderer.setClearColor(0x000000, 0)
   renderer.setPixelRatio(Math.min(dpr, 1.5))
 
-  const world = setup(THREE)
+  const world = setup(THREE, { reducedMotion })
   const { scene, camera } = world
   const clock = new THREE.Clock()
 

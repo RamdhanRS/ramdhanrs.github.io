@@ -43,12 +43,16 @@
   transform: translateY(-50%);
   opacity: 0;
   pointer-events: none;
+  touch-action: pan-y;
   transition: opacity 1.2s ease;
 }
+.contact.webgl-ready .contact-canvas { pointer-events: auto; cursor: grab; }
+.contact-canvas.is-dragging { cursor: grabbing; }
 .contact.webgl-ready .contact-canvas { opacity: 1; }
 .contact.webgl-ready .contact-orbits { display: none; }
 
-.contact-inner { padding: 34px 0; padding-right: min(430px, 31vw); position: relative; z-index: 2; }
+.contact-inner { padding: 34px 0; padding-right: min(430px, 31vw); position: relative; z-index: 2; pointer-events: none; }
+.contact-inner > * { pointer-events: auto; }
 .contact .eyebrow { border-color: rgba(255, 255, 255, .22); background: rgba(255, 255, 255, .08); color: rgba(255, 255, 255, .85); }
 .contact .eyebrow span { background: #d6f58a; box-shadow: 0 0 0 5px rgba(214, 245, 138, .1); }
 .contact h2 { max-width: 900px; margin-bottom: 28px; font: 650 clamp(50px, 7vw, 90px)/1.03 var(--font-display); letter-spacing: -.07em; text-wrap: balance; }

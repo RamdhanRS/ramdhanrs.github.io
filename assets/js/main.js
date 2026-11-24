@@ -8,6 +8,9 @@
  *   modules/pointer-effects.js  → tilt 3D kartu, parallax hero, tombol magnetik
  *   modules/tech-cube.js        → kubus teknologi 3D (CSS)
  *   modules/visitor-counter.js  → penghitung kunjungan
+ *   modules/console-typing.js   → console hero mengetik sendiri
+ *   modules/count-up.js         → angka menghitung naik
+ *   modules/marquee.js          → marquee melambat saat hover
  *   three/hero-scene.js         → scene 3D hero (Three.js)
  *   three/contact-globe.js      → globe 3D di section kontak (Three.js)
  */
@@ -18,6 +21,9 @@ import { initScrollEffects } from "./modules/scroll-effects.js"
 import { initPointerEffects } from "./modules/pointer-effects.js"
 import { initTechCube } from "./modules/tech-cube.js"
 import { initVisitorCounter } from "./modules/visitor-counter.js"
+import { initConsoleTyping } from "./modules/console-typing.js"
+import { initCountUp } from "./modules/count-up.js"
+import { initMarquee } from "./modules/marquee.js"
 import { supportsWebGL } from "./three/stage.js"
 
 initTheme()
@@ -27,6 +33,9 @@ initScrollEffects()
 initPointerEffects()
 initTechCube()
 initVisitorCounter()
+initConsoleTyping()
+initCountUp()
+initMarquee()
 
 // Scene 3D dimuat terakhir (Three.js ~150 KB dari CDN) supaya tidak menghambat konten.
 async function initThreeScenes() {
